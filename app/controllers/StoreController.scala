@@ -9,6 +9,6 @@ class StoreController @Inject()(val controllerComponents: ControllerComponents) 
     Ok(views.html.store())
   }
   def report() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.rerport())
+    Ok(views.html.report())
   }
 }
