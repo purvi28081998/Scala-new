@@ -10,7 +10,13 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class PersonController @Inject()(personDAO: PersonDAO, cc: MessagesControllerComponents)(implicit ec: ExecutionContext) extends MessagesAbstractController(cc) {
-
+  val personForm: Form[CreatePersonForm] = Form {
+    mapping(
+      "sno"-> nonEmptyText,
+      "name" -> nonEmptyText,
+      "city" -> nonEmptyText
+    )(CreatePersonForm.apply)(CreatePersonForm.unapply)
+  }
 
   def index = Action.async { implicit request =>
     personDAO.list().map { persons =>
@@ -33,3 +39,4 @@ class PersonController @Inject()(personDAO: PersonDAO, cc: MessagesControllerCom
 
 }
 
+case class CreatePersonForm(sno: String,name: String, city: String)

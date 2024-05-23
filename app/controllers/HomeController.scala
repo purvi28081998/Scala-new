@@ -3,6 +3,10 @@ package controllers
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import play.api.data.{Form, Forms}
+import play.api.data.Forms._
+import play.api.mvc._
+
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -18,7 +22,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
+
+
   def index() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 }
+
