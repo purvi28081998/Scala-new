@@ -76,12 +76,12 @@ class CartDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(
     }
   }
 
-  def delete(id: Long): Future[Boolean] = {
+  def delete(id: Long): Future[AnyVal] = {
     val query = cart.filter(cartItem => cartItem.id === id)
-    db.run(query.delete).map(_ > 0)
+    db.run(query.delete).map(_ => ())
   }
 
-  def updateCartItem(id: Option[Long], existingQuantity: Int): Future[Unit] = {
+  def updateCartItem(id: Option[Long], existingQuantity: Int): Future[AnyVal] = {
     println("update cart item")
     val query = for (cartItem <- cart if cartItem.id === id) yield cartItem.quantity
     db.run(query.result.headOption).flatMap {

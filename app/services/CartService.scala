@@ -45,5 +45,5 @@ class CartService @Inject()(cartDAO: CartDAO)(implicit system: ActorSystem, mat:
 
   def addCart(cart: Cart): Future[Unit] = cartDAO.insert(cart)
 
-  def deleteCart(apparelID: Long,userID: Long): Future[Boolean] = cartDAO.reduceCartItem(apparelID,userID )
+  def deleteCart(apparelID: Long,userID: Long): Future[AnyVal] = cartDAO.reduceCartItem(apparelID,userID )
 }

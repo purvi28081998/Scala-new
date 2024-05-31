@@ -37,11 +37,8 @@ class CartController @Inject()(cc: ControllerComponents, cartService: CartServic
     val apparelID = cartData("apparelID").head.toLong
 
     cartService.deleteCart(apparelID, userID).map { result =>
-      if (result) {
         Ok(s"Delete successful")
-      } else {
-         NotFound("Error occured.")
-      }
+
     }
   }
 
